@@ -27,6 +27,7 @@
   </prerequisites>
 
   <modules>
+    <module>test-lib</module>
     <module>require-charset</module>
   </modules>
 
@@ -53,6 +54,11 @@
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>${dependency.error-prone.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_core</artifactId>
         <version>${dependency.error-prone.version}</version>
       </dependency>
@@ -65,6 +71,23 @@
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>19.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.truth</groupId>
+        <artifactId>truth</artifactId>
+        <version>0.30</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.gantsign.com.google.errorprone</groupId>
+        <artifactId>error_prone_test</artifactId>
+        <version>${project.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -113,6 +136,9 @@
             <forceJavacCompilerUse>true</forceJavacCompilerUse>
             <showDeprecation>true</showDeprecation>
             <showWarnings>true</showWarnings>
+            <testExcludes>
+              <exclude>**/testdata/**</exclude>
+            </testExcludes>
           </configuration>
           <dependencies>
             <!-- override plexus-compiler-javac-errorprone's dependency on
@@ -274,6 +300,9 @@
                 <requireReleaseDeps>
                   <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
                   <message>No Snapshots Allowed!</message>
+                  <excludes>
+                    <exclude>com.github.gantsign.com.google.errorprone</exclude>
+                  </excludes>
                 </requireReleaseDeps>
                 <!-- When there are multiple versions of a dependency you have to choose the maximum version. -->
                 <requireUpperBoundDeps />

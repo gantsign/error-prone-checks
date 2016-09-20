@@ -22,11 +22,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="error_prone_test" />
         <module name="require-charset" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="error-prone-checks" target="1.8" />
+      <module name="error_prone_test" target="1.8" />
       <module name="require-charset" target="1.8" />
     </bytecodeTargetLevel>
   </component>

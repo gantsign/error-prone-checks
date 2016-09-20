@@ -19,12 +19,19 @@ import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 
 import com.google.auto.service.AutoService;
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.BugPattern;
 import com.google.errorprone.VisitorState;
 import com.google.errorprone.bugpatterns.BugChecker;
-import com.google.errorprone.bugpatterns.BugChecker.MethodTreeMatcher;
+import com.google.errorprone.bugpatterns.BugChecker.NewClassTreeMatcher;
 import com.google.errorprone.matchers.Description;
-import com.sun.source.tree.MethodTree;
+import com.google.errorprone.matchers.Matcher;
+import com.google.errorprone.matchers.Matchers;
+import com.google.errorprone.suppliers.Supplier;
+import com.google.errorprone.suppliers.Suppliers;
+import com.sun.source.tree.ExpressionTree;
+import com.sun.source.tree.NewClassTree;
+import com.sun.tools.javac.code.Type;
 
 /**
  * Bug checker to detect usage of {@link String#String(byte[])}.
@@ -38,12 +45,20 @@ import com.sun.source.tree.MethodTree;
     maturity = MATURE)
 public class NewStringWithoutCharset
     extends BugChecker
-    implements MethodTreeMatcher {
+    implements NewClassTreeMatcher {
+
+  private static final String STRING = String.class.getName();
+
+  private static final Supplier<Type> BYTE_ARRAY = Suppliers.arrayOf(Suppliers.BYTE_TYPE);
+
+  private static final Matcher<ExpressionTree> constructor =
+      Matchers.constructor().forClass(STRING).withParameters(ImmutableList.of(BYTE_ARRAY));
 
   @Override
-  public Description matchMethod(MethodTree tree, VisitorState state) {
-
-    // TODO
-    return Description.NO_MATCH;
+  public Description matchNewClass(NewClassTree tree, VisitorState state) {
+    if (!constructor.matches(tree, state)) {
+      return Description.NO_MATCH;
+    }
+    return describeMatch(tree);
   }
 }
