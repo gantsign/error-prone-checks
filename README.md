@@ -16,6 +16,7 @@
 # Error Prone Checks
 
 [![Build Status](https://travis-ci.org/gantsign/error-prone-checks.svg?branch=master)](https://travis-ci.org/gantsign/error-prone-checks)
+[![codecov](https://codecov.io/gh/gantsign/error-prone-checks/branch/master/graph/badge.svg)](https://codecov.io/gh/gantsign/error-prone-checks)
 [![Dependency Status](https://www.versioneye.com/user/projects/57e156d23adc05001270eb60/badge.svg?style=flat-round)](https://www.versioneye.com/user/projects/57e156d23adc05001270eb60)
 [![License](https://img.shields.io/badge/license-apache-blue.svg)](LICENSE)
 

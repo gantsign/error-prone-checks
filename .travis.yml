@@ -22,6 +22,9 @@ cache:
 
 script: .travis/build.sh
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 env:
   global:
     # VersionEye API Key
