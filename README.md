@@ -1,5 +1,6 @@
 # Error Prone Checks
 
+[![Build Status](https://travis-ci.org/gantsign/error-prone-checks.svg?branch=master)](https://travis-ci.org/gantsign/error-prone-checks)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 
 Additional checks for use with [Google Error Prone](http://errorprone.info).
