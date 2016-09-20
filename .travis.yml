@@ -19,3 +19,10 @@ jdk:
 cache:
   directories:
     - ~/.m2
+
+script: .travis/build.sh
+
+env:
+  global:
+    # VersionEye API Key
+    secure: NfpxdDL70tgjc3pBWmREXVVdA7KH3IXhLh3aCWugI7IHoe6ondIegsOPbSSxTXsCovTAGKdWMr2rKwF3ZFTMTaF90TUT3GG+8v0i5Q01Wp/17tipf9fvJcezWJQ9Yi5DvB510JSKL97H/VK/zLgv/xnMZkaM9vEt9EylzbjIY5l7/j+3zgtYpAa74ZBPo5ZeF6/iS+TWJbQPrX/LZ/DrkDLSnK4TEUYPgajFovlgQF7K28QHd+f2Nr6WIefhIR8qUmG1c/bGS4OJwIU9Ta+KdM3eUOS7hNXZRUFpoev5gphYobwMMOaRwKPqgLWCu8iZsPAmamHQorX6CiVAl+IEzT4OIbOAUbn4kcSl+gQbFnJFQZJbkfcJhzmiMx3h1AfW7MfpLLN6Cxnmfli4arfL3noNu3roUBY84iP5vZU2MQt5Ckrk+eKSYkHVhOMZMwk4wLc7b/3dJt40JdcS2bvkuiIWlDkK54Zf8i3eYNgx82s5WTYwAFMO3r3bfpP+09jmmhWymwhQUa3Ur4AelIrYOOdmLv8TxfXVPa+Iwd/sNbc658pTyYFgBCk5ebiE8YFf617rU5o9aU2v3eKfQNXZyxNioNf8kj8nXJ+gaBLGwtDbe625Ig72sIOfwrkOtxt/P0Dseybcqc0kgz9BCyz8keLuBi/7M2vU7l1bQjfMg/8=
