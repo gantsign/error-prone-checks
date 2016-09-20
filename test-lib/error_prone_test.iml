@@ -3,30 +3,28 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/target" />
+      <sourceFolder url="file://$MODULE_DIR$/target/generated-sources/annotations" isTestSource="false" generated="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-archiver" />
+      <excludeFolder url="file://$MODULE_DIR$/target/maven-status" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotation:2.0.12" level="project" />
     <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_core:2.0.12" level="project" />
+    <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotation:2.0.12" level="project" />
     <orderEntry type="library" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" level="project" />
     <orderEntry type="library" name="Maven: org.pcollections:pcollections:2.1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jFormatString:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.checkerframework:dataflow:1.8.10" level="project" />
     <orderEntry type="library" name="Maven: org.checkerframework:javacutil:1.8.10" level="project" />
     <orderEntry type="library" name="Maven: com.google.errorprone:error_prone_annotations:2.0.12" level="project" />
     <orderEntry type="library" name="Maven: com.google.errorprone:javac:1.9.0-dev-r2973-2" level="project" />
-    <orderEntry type="library" name="Maven: com.google.guava:guava:19.0" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.auto.service:auto-service:1.0-rc2" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.auto:auto-common:0.3" level="project" />
-    <orderEntry type="module" module-name="error_prone_test" scope="TEST" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.jimfs:jimfs:1.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.testing.compile:compile-testing:0.9" level="project" />
+    <orderEntry type="library" name="Maven: com.google.jimfs:jimfs:1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.testing.compile:compile-testing:0.9" level="project" />
     <orderEntry type="module-library">
       <library name="Maven: com.sun:tools:1.8.0_102">
         <CLASSES>
@@ -36,9 +34,10 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="TEST" name="Maven: com.google.truth:truth:0.30" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-library:1.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: com.google.truth:truth:0.30" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-library:1.3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.auto.value:auto-value:1.3" level="project" />
   </component>
 </module>
