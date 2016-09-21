@@ -9,4 +9,8 @@ public class NewStringWithoutCharsetNegativeCases {
   public void newString() {
     new String(TEST_BYTES, UTF_8);
   }
+
+  public void newPartialString() {
+    new String(TEST_BYTES, 1, 2, UTF_8);
+  }
 }
