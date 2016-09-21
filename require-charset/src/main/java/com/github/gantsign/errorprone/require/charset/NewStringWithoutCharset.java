@@ -36,7 +36,8 @@ import com.sun.source.tree.NewClassTree;
 import com.sun.tools.javac.code.Type;
 
 /**
- * Bug checker to detect usage of {@link String#String(byte[])}.
+ * Bug checker to detect usage of {@link String#String(byte[])} and
+ * {@link String#String(byte[], int, int)}.
  */
 @AutoService(BugChecker.class)
 @BugPattern(
