@@ -44,7 +44,6 @@ import com.sun.source.tree.MethodInvocationTree;
     category = JDK,
     severity = ERROR,
     maturity = MATURE)
-@SuppressWarnings("squid:S1191")
 public class GetBytesWithoutCharset
     extends BugChecker
     implements MethodInvocationTreeMatcher {

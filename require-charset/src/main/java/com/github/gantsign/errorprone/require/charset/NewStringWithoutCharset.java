@@ -49,7 +49,6 @@ import com.sun.tools.javac.code.Type;
     category = JDK,
     severity = ERROR,
     maturity = MATURE)
-@SuppressWarnings("squid:S1191")
 public class NewStringWithoutCharset
     extends BugChecker
     implements NewClassTreeMatcher {
