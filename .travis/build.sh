@@ -4,6 +4,7 @@
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     if [ "$TRAVIS_BRANCH" == "master" ]; then
+        # VersionEye update
         timeout --kill-after=30s 2m \
             ./mvnw versioneye:update --batch-mode
         exit_code=$?
@@ -14,7 +15,11 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
                 exit $exit_code
             fi
         fi
+
+        # SonarQube update
+        ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=https://sonarqube.com
     else
+        # VersionEye check
         timeout --kill-after=30s 2m \
             ./mvnw versioneye:securityAndLicenseCheck --batch-mode
         exit_code=$?

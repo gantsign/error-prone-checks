@@ -27,6 +27,10 @@
   <artifactId>error_prone_test</artifactId>
   <name>error-prone test library</name>
 
+  <properties>
+    <sonar.skip>true</sonar.skip>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.errorprone</groupId>
