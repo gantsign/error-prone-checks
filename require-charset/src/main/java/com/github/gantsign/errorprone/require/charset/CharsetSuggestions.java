@@ -21,12 +21,13 @@ import com.google.common.collect.ImmutableList;
  */
 final class CharsetSuggestions {
 
-  private CharsetSuggestions() {
-  }
-
   static final ImmutableList<String> CHARSET_SUGGESTIONS = ImmutableList.of(
       "java.nio.charset.StandardCharsets.UTF_8",
       "java.nio.charset.StandardCharsets.ISO_8859_1",
       "java.nio.charset.Charset.forName(\"windows-1252\")",
       "java.nio.charset.Charset.defaultCharset()");
+
+  private CharsetSuggestions() {
+  }
+
 }
