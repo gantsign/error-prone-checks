@@ -21,7 +21,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 /**
- * Unit tests for {@link NewStringWithoutCharset}.
+ * Unit tests for {@link FileWriterLacksCharset}.
  */
 @RunWith(JUnit4.class)
 public class FileWriterLacksCharsetTest {
