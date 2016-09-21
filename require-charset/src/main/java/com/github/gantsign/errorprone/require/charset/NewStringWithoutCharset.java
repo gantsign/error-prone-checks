@@ -17,6 +17,8 @@ package com.github.gantsign.errorprone.require.charset;
 import static com.google.errorprone.BugPattern.Category.JDK;
 import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
+import static com.google.errorprone.fixes.SuggestedFix.replace;
+import static java.lang.String.format;
 
 import com.google.auto.service.AutoService;
 import com.google.common.collect.ImmutableList;
@@ -39,7 +41,8 @@ import com.sun.tools.javac.code.Type;
 @AutoService(BugChecker.class)
 @BugPattern(
     name = "NewStringWithoutCharset",
-    summary = "Charset must be specified when constructing a new String from a byte array.",
+    summary = "java.nio.charset.Charset must be specified when constructing a new java.lang.String"
+        + " from a byte array.",
     category = JDK,
     severity = ERROR,
     maturity = MATURE)
@@ -60,6 +63,22 @@ public class NewStringWithoutCharset
     if (!constructor.matches(tree, state)) {
       return Description.NO_MATCH;
     }
-    return describeMatch(tree);
+
+    Description.Builder builder = buildDescription(tree);
+
+    String classIdentifier = state.getSourceForNode(tree.getIdentifier());
+    String bytesParam = state.getSourceForNode(tree.getArguments().get(0));
+
+    String[] charsets = new String[] {
+        "java.nio.charset.StandardCharsets.UTF_8",
+        "java.nio.charset.StandardCharsets.ISO_8859_1",
+        "java.nio.charset.Charset.forName(\"windows-1252\")",
+        "java.nio.charset.Charset.defaultCharset()"
+    };
+    for (String charset : charsets) {
+      String suggestion = format("new %s(%s, %s)", classIdentifier, bytesParam, charset);
+      builder.addFix(replace(tree, suggestion));
+    }
+    return builder.build();
   }
 }
