@@ -35,12 +35,12 @@ public class OutputStreamWriterWithoutCharsetTest {
   }
 
   @Test
-  public void newStringPositiveCases() {
+  public void outputStreamWriterWithoutCharsetPositiveCases() {
     compilationHelper.addSourceFile("OutputStreamWriterWithoutCharsetPositiveCases.java").doTest();
   }
 
   @Test
-  public void newStringNegativeCases() {
+  public void outputStreamWriterWithoutCharsetNegativeCases() {
     compilationHelper.addSourceFile("OutputStreamWriterWithoutCharsetNegativeCases.java").doTest();
   }
 }
