@@ -44,7 +44,6 @@ import java.io.OutputStreamWriter;
     category = JDK,
     severity = ERROR,
     maturity = MATURE)
-@SuppressWarnings("squid:S1191")
 public class OutputStreamWriterWithoutCharset
     extends BugChecker
     implements NewClassTreeMatcher {

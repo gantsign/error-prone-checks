@@ -44,7 +44,6 @@ import java.io.FileWriter;
     category = JDK,
     severity = ERROR,
     maturity = MATURE)
-@SuppressWarnings("squid:S1191")
 public class FileWriterLacksCharset
     extends BugChecker
     implements NewClassTreeMatcher {
