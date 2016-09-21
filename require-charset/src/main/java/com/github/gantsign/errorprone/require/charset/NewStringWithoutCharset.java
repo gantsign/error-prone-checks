@@ -55,12 +55,14 @@ public class NewStringWithoutCharset
 
   private static final Supplier<Type> BYTE_ARRAY = Suppliers.arrayOf(Suppliers.BYTE_TYPE);
 
-  private static final Matcher<ExpressionTree> constructor =
-      Matchers.constructor().forClass(STRING).withParameters(ImmutableList.of(BYTE_ARRAY));
+  private static final Matcher<ExpressionTree> constructors = Matchers.anyOf(
+      Matchers.constructor().forClass(STRING).withParameters(ImmutableList.of(BYTE_ARRAY)),
+      Matchers.constructor().forClass(STRING).withParameters(
+          ImmutableList.of(BYTE_ARRAY, Suppliers.INT_TYPE, Suppliers.INT_TYPE)));
 
   @Override
   public Description matchNewClass(NewClassTree tree, VisitorState state) {
-    if (!constructor.matches(tree, state)) {
+    if (!constructors.matches(tree, state)) {
       return Description.NO_MATCH;
     }
 
@@ -75,9 +77,20 @@ public class NewStringWithoutCharset
         "java.nio.charset.Charset.forName(\"windows-1252\")",
         "java.nio.charset.Charset.defaultCharset()"
     };
-    for (String charset : charsets) {
-      String suggestion = format("new %s(%s, %s)", classIdentifier, bytesParam, charset);
-      builder.addFix(replace(tree, suggestion));
+    if (tree.getArguments().size() == 1) {
+      for (String charset : charsets) {
+        String suggestion = format("new %s(%s, %s)", classIdentifier, bytesParam, charset);
+        builder.addFix(replace(tree, suggestion));
+      }
+    } else {
+      String offsetParam = state.getSourceForNode(tree.getArguments().get(1));
+      String lengthParam = state.getSourceForNode(tree.getArguments().get(2));
+
+      for (String charset : charsets) {
+        String suggestion = format("new %s(%s, %s, %s, %s)",
+            classIdentifier, bytesParam, offsetParam, lengthParam, charset);
+        builder.addFix(replace(tree, suggestion));
+      }
     }
     return builder.build();
   }

@@ -11,4 +11,8 @@ public class NewStringWithoutCharsetPositiveCases {
     new String(TEST_BYTES);
   }
 
+  public void newPartialString() {
+    // BUG: Diagnostic contains: java.nio.charset.Charset must be specified when constructing a new java.lang.String from a byte array.
+    new String(TEST_BYTES, 1, 2);
+  }
 }
