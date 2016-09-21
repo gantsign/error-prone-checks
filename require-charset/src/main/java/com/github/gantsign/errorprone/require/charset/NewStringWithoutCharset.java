@@ -14,6 +14,7 @@
 
 package com.github.gantsign.errorprone.require.charset;
 
+import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
 import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
@@ -72,14 +73,8 @@ public class NewStringWithoutCharset
     String classIdentifier = state.getSourceForNode(tree.getIdentifier());
     String bytesParam = state.getSourceForNode(tree.getArguments().get(0));
 
-    String[] charsets = new String[] {
-        "java.nio.charset.StandardCharsets.UTF_8",
-        "java.nio.charset.StandardCharsets.ISO_8859_1",
-        "java.nio.charset.Charset.forName(\"windows-1252\")",
-        "java.nio.charset.Charset.defaultCharset()"
-    };
     if (tree.getArguments().size() == 1) {
-      for (String charset : charsets) {
+      for (String charset : CHARSET_SUGGESTIONS) {
         String suggestion = format("new %s(%s, %s)", classIdentifier, bytesParam, charset);
         builder.addFix(replace(tree, suggestion));
       }
@@ -87,7 +82,7 @@ public class NewStringWithoutCharset
       String offsetParam = state.getSourceForNode(tree.getArguments().get(1));
       String lengthParam = state.getSourceForNode(tree.getArguments().get(2));
 
-      for (String charset : charsets) {
+      for (String charset : CHARSET_SUGGESTIONS) {
         String suggestion = format("new %s(%s, %s, %s, %s)",
             classIdentifier, bytesParam, offsetParam, lengthParam, charset);
         builder.addFix(replace(tree, suggestion));

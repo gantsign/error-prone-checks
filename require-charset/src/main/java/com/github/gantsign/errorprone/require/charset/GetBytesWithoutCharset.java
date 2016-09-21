@@ -14,6 +14,7 @@
 
 package com.github.gantsign.errorprone.require.charset;
 
+import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
 import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
@@ -63,13 +64,7 @@ public class GetBytesWithoutCharset
 
     Description.Builder builder = buildDescription(tree);
 
-    String[] charsets = new String[] {
-        "java.nio.charset.StandardCharsets.UTF_8",
-        "java.nio.charset.StandardCharsets.ISO_8859_1",
-        "java.nio.charset.Charset.forName(\"windows-1252\")",
-        "java.nio.charset.Charset.defaultCharset()"
-    };
-    for (String charset : charsets) {
+    for (String charset : CHARSET_SUGGESTIONS) {
       String suggestion = format("%s(%s)", methodSelect, charset);
       builder.addFix(replace(tree, suggestion));
     }
