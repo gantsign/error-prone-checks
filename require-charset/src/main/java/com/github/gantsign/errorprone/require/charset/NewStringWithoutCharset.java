@@ -20,6 +20,7 @@ import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
 
 import com.google.auto.service.AutoService;
 import com.google.common.collect.ImmutableList;
@@ -71,22 +72,15 @@ public class NewStringWithoutCharset
     Description.Builder builder = buildDescription(tree);
 
     String classIdentifier = state.getSourceForNode(tree.getIdentifier());
-    String bytesParam = state.getSourceForNode(tree.getArguments().get(0));
 
-    if (tree.getArguments().size() == 1) {
-      for (String charset : CHARSET_SUGGESTIONS) {
-        String suggestion = format("new %s(%s, %s)", classIdentifier, bytesParam, charset);
-        builder.addFix(replace(tree, suggestion));
-      }
-    } else {
-      String offsetParam = state.getSourceForNode(tree.getArguments().get(1));
-      String lengthParam = state.getSourceForNode(tree.getArguments().get(2));
+    String args = tree.getArguments()
+        .stream()
+        .map(state::getSourceForNode)
+        .collect(joining(", "));
 
-      for (String charset : CHARSET_SUGGESTIONS) {
-        String suggestion = format("new %s(%s, %s, %s, %s)",
-            classIdentifier, bytesParam, offsetParam, lengthParam, charset);
-        builder.addFix(replace(tree, suggestion));
-      }
+    for (String charset : CHARSET_SUGGESTIONS) {
+      String suggestion = format("new %s(%s, %s)", classIdentifier, args, charset);
+      builder.addFix(replace(tree, suggestion));
     }
     return builder.build();
   }
