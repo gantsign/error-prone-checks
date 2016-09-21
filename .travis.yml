@@ -19,6 +19,7 @@ jdk:
 cache:
   directories:
     - ~/.m2
+    - ~/.sonar
 
 script: .travis/build.sh
 
