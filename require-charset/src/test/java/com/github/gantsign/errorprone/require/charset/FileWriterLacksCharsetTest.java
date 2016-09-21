@@ -20,7 +20,7 @@ public class FileWriterLacksCharsetTest {
   }
 
   @Test
-  public void newStringPositiveCases() {
+  public void newFileWriterPositiveCases() {
     compilationHelper.addSourceFile("FileWriterLacksCharsetPositiveCases.java").doTest();
   }
 
