@@ -22,6 +22,9 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+  <name>Error Prone Checks</name>
+  <description>Additional checks for Google Error Prone</description>
+
   <prerequisites>
     <maven>3.2.5</maven>
   </prerequisites>

@@ -25,6 +25,10 @@
 
   <artifactId>require-charset</artifactId>
 
+  <name>Require Charset</name>
+  <description>Custom Error Prone checks to ensure the character set is specified when converting
+    text to/from bytes.</description>
+
   <dependencies>
     <dependency>
       <groupId>com.google.errorprone</groupId>
