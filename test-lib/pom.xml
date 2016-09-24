@@ -25,7 +25,9 @@
 
   <groupId>com.github.gantsign.com.google.errorprone</groupId>
   <artifactId>error_prone_test</artifactId>
+
   <name>error-prone test library</name>
+  <description>Test library extracted from Google Error Prone sources.</description>
 
   <properties>
     <sonar.skip>true</sonar.skip>
