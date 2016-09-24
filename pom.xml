@@ -442,4 +442,11 @@
     </license>
   </licenses>
 
+  <scm>
+    <connection>scm:git:https://github.com/gantsign/error-prone-checks.git</connection>
+    <developerConnection>scm:git:git@github.com:gantsign/error-prone-checks.git</developerConnection>
+    <url>https://github.com/gantsign/error-prone-checks</url>
+    <tag>HEAD</tag>
+  </scm>
+
 </project>
