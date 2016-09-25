@@ -41,6 +41,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <site.path>snapshot</site.path>
   </properties>
 
   <dependencyManagement>
@@ -206,6 +207,9 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.5.1</version>
+          <configuration>
+            <skipDeploy>true</skipDeploy>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -252,6 +256,25 @@
               <goal>sort</goal>
             </goals>
             <phase>verify</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>0.12</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>site</goal>
+            </goals>
+            <phase>site-deploy</phase>
+            <configuration>
+              <server>github</server>
+              <message>Updated maven site</message>
+              <path>${site.path}</path>
+              <merge>true</merge>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -439,6 +462,8 @@
     </plugins>
   </reporting>
 
+  <url>https://github.com/gantsign/error-prone-checks</url>
+
   <licenses>
     <license>
       <name>Apache 2.0</name>
@@ -446,12 +471,29 @@
     </license>
   </licenses>
 
+  <developers>
+    <developer>
+      <name>John Freeman</name>
+      <organization>GantSign Ltd.</organization>
+    </developer>
+  </developers>
+
   <scm>
     <connection>scm:git:https://github.com/gantsign/error-prone-checks.git</connection>
     <developerConnection>scm:git:git@github.com:gantsign/error-prone-checks.git</developerConnection>
     <url>https://github.com/gantsign/error-prone-checks</url>
     <tag>HEAD</tag>
   </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/gantsign/error-prone-checks/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/gantsign/error-prone-checks</url>
+  </ciManagement>
 
   <distributionManagement>
     <repository>
@@ -471,6 +513,13 @@
           <url>https://api.bintray.com/maven/gantsign/maven/error-prone-checks/;publish=1</url>
         </repository>
       </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>release</id>
+      <properties>
+        <site.path>release</site.path>
+      </properties>
     </profile>
   </profiles>
 
