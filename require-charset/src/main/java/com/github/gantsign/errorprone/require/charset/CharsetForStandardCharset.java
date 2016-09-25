@@ -92,11 +92,11 @@ public class CharsetForStandardCharset
           .map(entry -> immutableEntry(entry.getKey().toLowerCase(), entry.getValue()))
           .collect(collectingAndThen(toMap(Entry::getKey, Entry::getValue), ImmutableMap::copyOf));
 
-  private boolean isStandardCharset(String name) {
+  private static boolean isStandardCharset(String name) {
     return STANDARD_CHARSET_MAP.containsKey(requireNonNull(name).toLowerCase());
   }
 
-  private String fieldNameForCharset(String name) {
+  private static String fieldNameForCharset(String name) {
     Charset charset = STANDARD_CHARSET_MAP.get(requireNonNull(name).toLowerCase());
     return STANDARD_CHARSET_FIELD_MAP.get(requireNonNull(charset));
   }
