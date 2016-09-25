@@ -32,7 +32,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         fi
     fi
 
-    if [ "$TRAVIS_TAG" != "" ]; then
-        ./mvnw deploy --settings .travis/settings.xml -P publish-artifacts --batch-mode
+    if [ "$TRAVIS_TAG" == "" ]; then
+        ./mvnw site-deploy --settings .travis/settings.xml --batch-mode
+    else
+        ./mvnw deploy --settings .travis/settings.xml -P publish-artifacts --batch-mode \
+            && ./mvnw site-deploy --settings .travis/settings.xml -P release --batch-mode
     fi
 fi
