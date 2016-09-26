@@ -25,6 +25,7 @@ import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 import com.google.auto.service.AutoService;
@@ -41,7 +42,6 @@ import com.sun.source.tree.LiteralTree;
 import com.sun.source.tree.MethodInvocationTree;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Map.Entry;
 
 /**
  * Bug checker to detect usage of {@link Charset#forName(String)} that can be replaced with
@@ -90,7 +90,7 @@ public class CharsetForStandardCharset
           .map(ImmutableMap::entrySet)
           .flatMap(ImmutableSet::stream)
           .map(entry -> immutableEntry(entry.getKey().toLowerCase(), entry.getValue()))
-          .collect(collectingAndThen(toMap(Entry::getKey, Entry::getValue), ImmutableMap::copyOf));
+          .collect(collectingAndThen(toList(), ImmutableMap::copyOf));
 
   private static boolean isStandardCharset(String name) {
     return STANDARD_CHARSET_MAP.containsKey(requireNonNull(name).toLowerCase());
