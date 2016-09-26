@@ -23,14 +23,11 @@ import static com.google.errorprone.matchers.Matchers.methodInvocation;
 import static com.google.errorprone.matchers.Matchers.staticMethod;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
-import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Collectors.toMap;
 
 import com.google.auto.service.AutoService;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableSet;
 import com.google.errorprone.BugPattern;
 import com.google.errorprone.VisitorState;
 import com.google.errorprone.bugpatterns.BugChecker;
@@ -42,6 +39,7 @@ import com.sun.source.tree.LiteralTree;
 import com.sun.source.tree.MethodInvocationTree;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.stream.Stream;
 
 /**
  * Bug checker to detect usage of {@link Charset#forName(String)} that can be replaced with
@@ -79,16 +77,12 @@ public class CharsetForStandardCharset
   private static final ImmutableMap<String, Charset> STANDARD_CHARSET_MAP =
       STANDARD_CHARSET_FIELD_MAP.keySet()
           .stream()
-          .map(charset ->
-              ImmutableMap.<String, Charset>builder()
-                  .put(charset.name(), charset)
-                  .putAll(
-                      charset.aliases()
-                          .stream()
-                          .collect(toMap(identity(), alias -> charset)))
-                  .build())
-          .map(ImmutableMap::entrySet)
-          .flatMap(ImmutableSet::stream)
+          .flatMap(charset ->
+              Stream.concat(
+                  Stream.of(immutableEntry(charset.name(), charset)),
+                  charset.aliases()
+                      .stream()
+                      .map(alias -> immutableEntry(alias, charset))))
           .map(entry -> immutableEntry(entry.getKey().toLowerCase(), entry.getValue()))
           .collect(collectingAndThen(toList(), ImmutableMap::copyOf));
 
