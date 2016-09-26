@@ -271,8 +271,8 @@
             <phase>site-deploy</phase>
             <configuration>
               <server>github</server>
-              <message>Updated maven site</message>
-              <path>${site.path}</path>
+              <message>Updated maven site for ${project.artifactId}, ${project.version}</message>
+              <path>${project.distributionManagement.site.url}</path>
               <merge>true</merge>
             </configuration>
           </execution>
@@ -501,6 +501,11 @@
       <name>gantsign-maven</name>
       <url>https://dl.bintray.com/gantsign/maven</url>
     </repository>
+    <site>
+      <id>github-pages-site</id>
+      <name>Deployment through GitHub's site deployment plugin</name>
+      <url>${site.path}</url>
+    </site>
   </distributionManagement>
 
   <profiles>
