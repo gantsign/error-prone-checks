@@ -18,6 +18,10 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 
         # SonarQube update
         ./mvnw sonar:sonar -Dsonar.login=$SONAR_TOKEN -Dsonar.host.url=https://sonarqube.com
+
+        if [ "$TRAVIS_TAG" == "" ]; then
+            ./mvnw site-deploy --settings .travis/settings.xml --batch-mode
+        fi
     else
         # VersionEye check
         timeout --kill-after=30s 2m \
@@ -32,9 +36,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         fi
     fi
 
-    if [ "$TRAVIS_TAG" == "" ]; then
-        ./mvnw site-deploy --settings .travis/settings.xml --batch-mode
-    else
+    if [ "$TRAVIS_TAG" != "" ]; then
         ./mvnw deploy --settings .travis/settings.xml -P publish-artifacts --batch-mode \
             && ./mvnw site-deploy --settings .travis/settings.xml -P release --batch-mode
     fi
