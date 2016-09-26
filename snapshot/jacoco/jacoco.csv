@@ -4,6 +4,6 @@ Require Charset,com.github.gantsign.errorprone.require.charset,NewStringWithoutC
 Require Charset,com.github.gantsign.errorprone.require.charset,FileReaderLacksCharset,0,69,0,4,0,16,0,5,0,3
 Require Charset,com.github.gantsign.errorprone.require.charset,OutputStreamWriterWithoutCharset,0,82,0,4,0,15,0,5,0,3
 Require Charset,com.github.gantsign.errorprone.require.charset,CharsetSuggestions,0,10,0,0,0,3,0,2,0,2
-Require Charset,com.github.gantsign.errorprone.require.charset,CharsetForStandardCharset,0,177,0,6,0,46,0,11,0,8
+Require Charset,com.github.gantsign.errorprone.require.charset,CharsetForStandardCharset,0,175,0,6,0,46,0,11,0,8
 Require Charset,com.github.gantsign.errorprone.require.charset,FileWriterLacksCharset,0,69,0,4,0,16,0,5,0,3
 Require Charset,com.github.gantsign.errorprone.require.charset,InputStreamReaderWithoutCharset,0,82,0,4,0,15,0,5,0,3
