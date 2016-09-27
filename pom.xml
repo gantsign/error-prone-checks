@@ -65,16 +65,38 @@
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_core</artifactId>
         <version>${dependency.error-prone.version}</version>
+        <exclusions>
+          <exclusion>
+            <!-- Embedded in the error_prone_core uber jar. -->
+            <groupId>com.github.stephenc.jcip</groupId>
+            <artifactId>jcip-annotations</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- Embedded in the error_prone_core uber jar. -->
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- Embedded in the error_prone_core uber jar. -->
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotation</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- Embedded in the error_prone_core uber jar. -->
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- Embedded in the error_prone_core uber jar. -->
+            <groupId>org.pcollections</groupId>
+            <artifactId>pcollections</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>javac</artifactId>
         <version>1.9.0-dev-r2973-2</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>19.0</version>
       </dependency>
       <dependency>
         <groupId>com.google.truth</groupId>
@@ -316,6 +338,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
         <version>1.4.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.0-beta-5</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -362,6 +391,9 @@
                 <requireNoRepositories>
                   <message>Best Practice is to never define repositories in pom.xml (use a repository manager instead)</message>
                 </requireNoRepositories>
+                <banDuplicateClasses>
+                  <findAllDuplicates>true</findAllDuplicates>
+                </banDuplicateClasses>
               </rules>
             </configuration>
           </execution>
