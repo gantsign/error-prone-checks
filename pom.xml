@@ -36,7 +36,7 @@
 
   <properties>
     <dependencies.slf4j.version>1.7.21</dependencies.slf4j.version>
-    <dependency.error-prone.version>2.0.12</dependency.error-prone.version>
+    <dependency.error-prone.version>2.0.13</dependency.error-prone.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
