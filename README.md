@@ -23,6 +23,21 @@
 
 Additional checks for use with [Google Error Prone](http://errorprone.info).
 
+# About
+
+The GantSign Error Prone Checks pickup where
+[Google Error Prone](http://errorprone.info/) and our
+[Checkstyle configuration](https://github.com/gantsign/checkstyle-config) leaves
+off.
+
+Google Error Prone focuses on likely bugs rather than poor style and outdated
+APIs; [Checkstyle](http://checkstyle.sourceforge.net) works on the source code
+and lacks the information about types to be able to write rules banning
+APIs that are deprecated / superseded / error prone.
+
+The GantSign Error Prone checks fill this gap to push developers to use the best
+APIs currently available.
+
 # License
 
 Code is under the
