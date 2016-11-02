@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NewStringWithoutCharset.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Require Charset</a> &gt; <a href="index.source.html" class="el_package">com.github.gantsign.errorprone.require.charset</a> &gt; <span class="el_source">NewStringWithoutCharset.java</span></div><h1>NewStringWithoutCharset.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2016 GantSign Ltd. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
+package com.github.gantsign.errorprone.require.charset;
+
+import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
+import static com.google.errorprone.BugPattern.Category.JDK;
+import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
+import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
+import static com.google.errorprone.fixes.SuggestedFix.replace;
+import static java.lang.String.format;
+import static java.util.stream.Collectors.joining;
+
+import com.google.auto.service.AutoService;
+import com.google.common.collect.ImmutableList;
+import com.google.errorprone.BugPattern;
+import com.google.errorprone.VisitorState;
+import com.google.errorprone.bugpatterns.BugChecker;
+import com.google.errorprone.bugpatterns.BugChecker.NewClassTreeMatcher;
+import com.google.errorprone.matchers.Description;
+import com.google.errorprone.matchers.Matcher;
+import com.google.errorprone.matchers.Matchers;
+import com.google.errorprone.suppliers.Supplier;
+import com.google.errorprone.suppliers.Suppliers;
+import com.sun.source.tree.ExpressionTree;
+import com.sun.source.tree.NewClassTree;
+import com.sun.tools.javac.code.Type;
+
+/**
+ * Bug checker to detect usage of {@link String#String(byte[])} and
+ * {@link String#String(byte[], int, int)}.
+ */
+@AutoService(BugChecker.class)
+@BugPattern(
+    name = &quot;NewStringWithoutCharset&quot;,
+    summary = &quot;java.nio.charset.Charset must be specified when constructing a new java.lang.String&quot;
+        + &quot; from a byte array.&quot;,
+    category = JDK,
+    severity = ERROR,
+    maturity = MATURE)
+<span class="fc" id="L52">public class NewStringWithoutCharset</span>
+    extends BugChecker
+    implements NewClassTreeMatcher {
+
+<span class="fc" id="L56">  private static final String STRING = String.class.getName();</span>
+
+<span class="fc" id="L58">  private static final Supplier&lt;Type&gt; BYTE_ARRAY = Suppliers.arrayOf(Suppliers.BYTE_TYPE);</span>
+
+<span class="fc" id="L60">  private static final Matcher&lt;ExpressionTree&gt; constructors = Matchers.anyOf(</span>
+<span class="fc" id="L61">      Matchers.constructor().forClass(STRING).withParameters(ImmutableList.of(BYTE_ARRAY)),</span>
+<span class="fc" id="L62">      Matchers.constructor().forClass(STRING).withParameters(</span>
+<span class="fc" id="L63">          ImmutableList.of(BYTE_ARRAY, Suppliers.INT_TYPE, Suppliers.INT_TYPE)));</span>
+
+  @Override
+  public Description matchNewClass(NewClassTree tree, VisitorState state) {
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    if (!constructors.matches(tree, state)) {</span>
+<span class="fc" id="L68">      return Description.NO_MATCH;</span>
+    }
+
+<span class="fc" id="L71">    Description.Builder builder = buildDescription(tree);</span>
+
+<span class="fc" id="L73">    String classIdentifier = state.getSourceForNode(tree.getIdentifier());</span>
+
+<span class="fc" id="L75">    String args = tree.getArguments()</span>
+<span class="fc" id="L76">        .stream()</span>
+<span class="fc" id="L77">        .map(state::getSourceForNode)</span>
+<span class="fc" id="L78">        .collect(joining(&quot;, &quot;));</span>
+
+<span class="fc bfc" id="L80" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
+<span class="fc" id="L81">      String suggestion = format(&quot;new %s(%s, %s)&quot;, classIdentifier, args, charset);</span>
+<span class="fc" id="L82">      builder.addFix(replace(tree, suggestion));</span>
+<span class="fc" id="L83">    }</span>
+<span class="fc" id="L84">    return builder.build();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
