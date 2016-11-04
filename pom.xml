@@ -19,7 +19,7 @@
 
   <groupId>com.github.gantsign.errorprone</groupId>
   <artifactId>error-prone-checks</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
   <packaging>pom</packaging>
 
   <name>Error Prone Checks</name>
@@ -530,7 +530,7 @@
     <connection>scm:git:https://github.com/gantsign/error-prone-checks.git</connection>
     <developerConnection>scm:git:git@github.com:gantsign/error-prone-checks.git</developerConnection>
     <url>https://github.com/gantsign/error-prone-checks</url>
-    <tag>HEAD</tag>
+    <tag>1.0.2</tag>
   </scm>
 
   <issueManagement>
