@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static com.google.errorprone.matchers.Matchers.instanceMethod;
@@ -42,8 +41,7 @@ import com.sun.source.tree.MethodInvocationTree;
     summary =
         "java.nio.charset.Charset must be specified when calling java.lang.String.getBytes().",
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
+    severity = ERROR)
 public class GetBytesWithoutCharset
     extends BugChecker
     implements MethodInvocationTreeMatcher {

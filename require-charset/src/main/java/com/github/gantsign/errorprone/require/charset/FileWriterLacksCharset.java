@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static java.lang.String.format;
@@ -42,8 +41,7 @@ import java.io.FileWriter;
     name = "FileWriterLacksCharset",
     summary = "java.io.FileWriter must be avoided as you are unable to specify the charset.",
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
+    severity = ERROR)
 public class FileWriterLacksCharset
     extends BugChecker
     implements NewClassTreeMatcher {
