@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static java.lang.String.format;
@@ -42,36 +41,35 @@ import java.io.FileWriter;
     name = &quot;FileWriterLacksCharset&quot;,
     summary = &quot;java.io.FileWriter must be avoided as you are unable to specify the charset.&quot;,
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
-<span class="fc" id="L47">public class FileWriterLacksCharset</span>
+    severity = ERROR)
+<span class="fc" id="L45">public class FileWriterLacksCharset</span>
     extends BugChecker
     implements NewClassTreeMatcher {
 
-<span class="fc" id="L51">  private static final String FILE_WRITER = FileWriter.class.getName();</span>
+<span class="fc" id="L49">  private static final String FILE_WRITER = FileWriter.class.getName();</span>
 
-<span class="fc" id="L53">  private static final Matcher&lt;ExpressionTree&gt; constructors =</span>
-<span class="fc" id="L54">      Matchers.constructor().forClass(FILE_WRITER);</span>
+<span class="fc" id="L51">  private static final Matcher&lt;ExpressionTree&gt; constructors =</span>
+<span class="fc" id="L52">      Matchers.constructor().forClass(FILE_WRITER);</span>
 
   @Override
   public Description matchNewClass(NewClassTree tree, VisitorState state) {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (!constructors.matches(tree, state)) {</span>
-<span class="fc" id="L59">      return Description.NO_MATCH;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (!constructors.matches(tree, state)) {</span>
+<span class="fc" id="L57">      return Description.NO_MATCH;</span>
     }
 
-<span class="fc" id="L62">    Description.Builder builder = buildDescription(tree);</span>
+<span class="fc" id="L60">    Description.Builder builder = buildDescription(tree);</span>
 
-<span class="fc" id="L64">    String args = tree.getArguments()</span>
-<span class="fc" id="L65">        .stream()</span>
-<span class="fc" id="L66">        .map(state::getSourceForNode)</span>
-<span class="fc" id="L67">        .collect(joining(&quot;, &quot;));</span>
+<span class="fc" id="L62">    String args = tree.getArguments()</span>
+<span class="fc" id="L63">        .stream()</span>
+<span class="fc" id="L64">        .map(state::getSourceForNode)</span>
+<span class="fc" id="L65">        .collect(joining(&quot;, &quot;));</span>
 
-<span class="fc bfc" id="L69" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
-<span class="fc" id="L70">      String suggestion = format(</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
+<span class="fc" id="L68">      String suggestion = format(</span>
           &quot;new java.io.OutputStreamWriter(new java.io.FileOutputStream(%s), %s)&quot;, args, charset);
-<span class="fc" id="L72">      builder.addFix(replace(tree, suggestion));</span>
-<span class="fc" id="L73">    }</span>
-<span class="fc" id="L74">    return builder.build();</span>
+<span class="fc" id="L70">      builder.addFix(replace(tree, suggestion));</span>
+<span class="fc" id="L71">    }</span>
+<span class="fc" id="L72">    return builder.build();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

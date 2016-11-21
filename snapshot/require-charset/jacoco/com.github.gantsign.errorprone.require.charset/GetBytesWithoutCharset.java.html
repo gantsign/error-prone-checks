@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static com.google.errorprone.matchers.Matchers.instanceMethod;
@@ -42,32 +41,31 @@ import com.sun.source.tree.MethodInvocationTree;
     summary =
         &quot;java.nio.charset.Charset must be specified when calling java.lang.String.getBytes().&quot;,
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
-<span class="fc" id="L47">public class GetBytesWithoutCharset</span>
+    severity = ERROR)
+<span class="fc" id="L45">public class GetBytesWithoutCharset</span>
     extends BugChecker
     implements MethodInvocationTreeMatcher {
 
-<span class="fc" id="L51">  private static final String STRING = String.class.getName();</span>
+<span class="fc" id="L49">  private static final String STRING = String.class.getName();</span>
 
-<span class="fc" id="L53">  private static final Matcher&lt;ExpressionTree&gt; method = methodInvocation(</span>
-<span class="fc" id="L54">      instanceMethod().onExactClass(STRING).named(&quot;getBytes&quot;).withParameters());</span>
+<span class="fc" id="L51">  private static final Matcher&lt;ExpressionTree&gt; method = methodInvocation(</span>
+<span class="fc" id="L52">      instanceMethod().onExactClass(STRING).named(&quot;getBytes&quot;).withParameters());</span>
 
   @Override
   public Description matchMethodInvocation(MethodInvocationTree tree, VisitorState state) {
-<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (!method.matches(tree, state)) {</span>
-<span class="fc" id="L59">      return Description.NO_MATCH;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">    if (!method.matches(tree, state)) {</span>
+<span class="fc" id="L57">      return Description.NO_MATCH;</span>
     }
 
-<span class="fc" id="L62">    String methodSelect = state.getSourceForNode(tree.getMethodSelect());</span>
+<span class="fc" id="L60">    String methodSelect = state.getSourceForNode(tree.getMethodSelect());</span>
 
-<span class="fc" id="L64">    Description.Builder builder = buildDescription(tree);</span>
+<span class="fc" id="L62">    Description.Builder builder = buildDescription(tree);</span>
 
-<span class="fc bfc" id="L66" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
-<span class="fc" id="L67">      String suggestion = format(&quot;%s(%s)&quot;, methodSelect, charset);</span>
-<span class="fc" id="L68">      builder.addFix(replace(tree, suggestion));</span>
-<span class="fc" id="L69">    }</span>
-<span class="fc" id="L70">    return builder.build();</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
+<span class="fc" id="L65">      String suggestion = format(&quot;%s(%s)&quot;, methodSelect, charset);</span>
+<span class="fc" id="L66">      builder.addFix(replace(tree, suggestion));</span>
+<span class="fc" id="L67">    }</span>
+<span class="fc" id="L68">    return builder.build();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

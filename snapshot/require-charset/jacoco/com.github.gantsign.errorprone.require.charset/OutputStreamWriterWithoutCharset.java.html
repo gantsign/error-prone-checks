@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static java.lang.String.format;
@@ -42,34 +41,33 @@ import java.io.OutputStreamWriter;
     name = &quot;OutputStreamWriterWithoutCharset&quot;,
     summary = &quot;Charset must be specified when constructing a new java.io.OutputStreamWriter.&quot;,
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
-<span class="fc" id="L47">public class OutputStreamWriterWithoutCharset</span>
+    severity = ERROR)
+<span class="fc" id="L45">public class OutputStreamWriterWithoutCharset</span>
     extends BugChecker
     implements NewClassTreeMatcher {
 
-<span class="fc" id="L51">  private static final String OUTPUT_STREAM = OutputStream.class.getName();</span>
-<span class="fc" id="L52">  private static final String OUTPUT_STREAM_WRITER = OutputStreamWriter.class.getName();</span>
+<span class="fc" id="L49">  private static final String OUTPUT_STREAM = OutputStream.class.getName();</span>
+<span class="fc" id="L50">  private static final String OUTPUT_STREAM_WRITER = OutputStreamWriter.class.getName();</span>
 
-<span class="fc" id="L54">  private static final Matcher&lt;ExpressionTree&gt; constructor =</span>
-<span class="fc" id="L55">      Matchers.constructor().forClass(OUTPUT_STREAM_WRITER).withParameters(OUTPUT_STREAM);</span>
+<span class="fc" id="L52">  private static final Matcher&lt;ExpressionTree&gt; constructor =</span>
+<span class="fc" id="L53">      Matchers.constructor().forClass(OUTPUT_STREAM_WRITER).withParameters(OUTPUT_STREAM);</span>
 
   @Override
   public Description matchNewClass(NewClassTree tree, VisitorState state) {
-<span class="fc bfc" id="L59" title="All 2 branches covered.">    if (!constructor.matches(tree, state)) {</span>
-<span class="fc" id="L60">      return Description.NO_MATCH;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">    if (!constructor.matches(tree, state)) {</span>
+<span class="fc" id="L58">      return Description.NO_MATCH;</span>
     }
 
-<span class="fc" id="L63">    Description.Builder builder = buildDescription(tree);</span>
+<span class="fc" id="L61">    Description.Builder builder = buildDescription(tree);</span>
 
-<span class="fc" id="L65">    String classIdentifier = state.getSourceForNode(tree.getIdentifier());</span>
-<span class="fc" id="L66">    String streamParam = state.getSourceForNode(tree.getArguments().get(0));</span>
+<span class="fc" id="L63">    String classIdentifier = state.getSourceForNode(tree.getIdentifier());</span>
+<span class="fc" id="L64">    String streamParam = state.getSourceForNode(tree.getArguments().get(0));</span>
 
-<span class="fc bfc" id="L68" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
-<span class="fc" id="L69">      String suggestion = format(&quot;new %s(%s, %s)&quot;, classIdentifier, streamParam, charset);</span>
-<span class="fc" id="L70">      builder.addFix(replace(tree, suggestion));</span>
-<span class="fc" id="L71">    }</span>
-<span class="fc" id="L72">    return builder.build();</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    for (String charset : CHARSET_SUGGESTIONS) {</span>
+<span class="fc" id="L67">      String suggestion = format(&quot;new %s(%s, %s)&quot;, classIdentifier, streamParam, charset);</span>
+<span class="fc" id="L68">      builder.addFix(replace(tree, suggestion));</span>
+<span class="fc" id="L69">    }</span>
+<span class="fc" id="L70">    return builder.build();</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
