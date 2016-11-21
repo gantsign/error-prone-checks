@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.github.gantsign.errorprone.require.charset.CharsetSuggestions.CHARSET_SUGGESTIONS;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static java.lang.String.format;
@@ -47,8 +46,7 @@ import com.sun.tools.javac.code.Type;
     summary = "java.nio.charset.Charset must be specified when constructing a new java.lang.String"
         + " from a byte array.",
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
+    severity = ERROR)
 public class NewStringWithoutCharset
     extends BugChecker
     implements NewClassTreeMatcher {

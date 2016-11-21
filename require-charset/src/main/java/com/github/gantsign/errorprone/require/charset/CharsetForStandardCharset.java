@@ -16,7 +16,6 @@ package com.github.gantsign.errorprone.require.charset;
 
 import static com.google.common.collect.Maps.immutableEntry;
 import static com.google.errorprone.BugPattern.Category.JDK;
-import static com.google.errorprone.BugPattern.MaturityLevel.MATURE;
 import static com.google.errorprone.BugPattern.SeverityLevel.ERROR;
 import static com.google.errorprone.fixes.SuggestedFix.replace;
 import static com.google.errorprone.matchers.Matchers.methodInvocation;
@@ -51,8 +50,7 @@ import java.util.stream.Stream;
     summary =
         "Must use java.nio.charset.StandardCharsets where possible.",
     category = JDK,
-    severity = ERROR,
-    maturity = MATURE)
+    severity = ERROR)
 public class CharsetForStandardCharset
     extends BugChecker
     implements MethodInvocationTreeMatcher {
