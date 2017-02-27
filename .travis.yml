@@ -16,10 +16,13 @@ language: java
 jdk:
   - oraclejdk8
 
+before_cache:
+  - rm --force --recursive --verbose $HOME/.m2/repository/com/github/gantsign
+
 cache:
   directories:
-    - ~/.m2
-    - ~/.sonar
+    - $HOME/.m2
+    - $HOME/.sonar
 
 script: .travis/build.sh
 
