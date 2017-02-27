@@ -36,16 +36,20 @@
   <dependencies>
     <dependency>
       <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_check_api</artifactId>
+      <artifactId>error_prone_annotation</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_core</artifactId>
+      <artifactId>error_prone_check_api</artifactId>
     </dependency>
     <dependency>
       <!-- GPLv2 with Classpath Exception -->
       <groupId>com.google.errorprone</groupId>
       <artifactId>javac</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.jimfs</groupId>

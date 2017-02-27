@@ -36,7 +36,7 @@
 
   <properties>
     <dependencies.slf4j.version>1.7.21</dependencies.slf4j.version>
-    <dependency.error-prone.version>2.0.15</dependency.error-prone.version>
+    <dependency.error-prone.version>2.0.17</dependency.error-prone.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -72,60 +72,21 @@
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_check_api</artifactId>
         <version>${dependency.error-prone.version}</version>
-        <exclusions>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_annotation</artifactId>
-          </exclusion>
-        </exclusions>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_core</artifactId>
         <version>${dependency.error-prone.version}</version>
-        <exclusions>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.github.stephenc.jcip</groupId>
-            <artifactId>jcip-annotations</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.auto</groupId>
-            <artifactId>auto-common</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.code.findbugs</groupId>
-            <artifactId>jsr305</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.errorprone</groupId>
-            <artifactId>error_prone_annotation</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-          </exclusion>
-          <exclusion>
-            <!-- Embedded in the error_prone_core uber jar. -->
-            <groupId>org.pcollections</groupId>
-            <artifactId>pcollections</artifactId>
-          </exclusion>
-        </exclusions>
       </dependency>
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>javac</artifactId>
-        <version>1.9.0-dev-r2973-2</version>
+        <version>9-dev-r3297-3</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>21.0</version>
       </dependency>
       <dependency>
         <groupId>com.google.truth</groupId>

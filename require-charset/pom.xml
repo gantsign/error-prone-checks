@@ -32,27 +32,24 @@
   <dependencies>
     <dependency>
       <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_check_api</artifactId>
+      <artifactId>error_prone_annotation</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.errorprone</groupId>
-      <artifactId>error_prone_core</artifactId>
+      <artifactId>error_prone_check_api</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.errorprone</groupId>
       <artifactId>javac</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.google.auto.service</groupId>
       <artifactId>auto-service</artifactId>
       <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <!-- Embedded in the error_prone_core uber jar. -->
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.github.gantsign.com.google.errorprone</groupId>
