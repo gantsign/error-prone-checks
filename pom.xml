@@ -35,7 +35,7 @@
 
   <properties>
     <dependencies.slf4j.version>1.7.21</dependencies.slf4j.version>
-    <dependency.error-prone.version>2.0.17</dependency.error-prone.version>
+    <dependency.error-prone.version>2.0.19</dependency.error-prone.version>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,7 +80,7 @@
       <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>javac</artifactId>
-        <version>9-dev-r3297-3</version>
+        <version>9-dev-r3297-4</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
