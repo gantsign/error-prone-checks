@@ -52,8 +52,8 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.gantsign.com.google.errorprone</groupId>
-      <artifactId>error_prone_test</artifactId>
+      <groupId>com.google.errorprone</groupId>
+      <artifactId>error_prone_test_helpers</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
