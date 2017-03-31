@@ -30,7 +30,6 @@
   </prerequisites>
 
   <modules>
-    <module>test-lib</module>
     <module>require-charset</module>
   </modules>
 
@@ -94,10 +93,17 @@
         <version>0.32</version>
       </dependency>
       <dependency>
-        <groupId>com.github.gantsign.com.google.errorprone</groupId>
-        <artifactId>error_prone_test</artifactId>
-        <version>${project.version}</version>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_test_helpers</artifactId>
+        <version>${dependency.error-prone.version}</version>
         <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <!-- provided by com.google.errorprone:javac -->
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
