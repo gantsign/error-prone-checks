@@ -18,7 +18,7 @@
 [![Build Status](https://travis-ci.org/gantsign/error-prone-checks.svg?branch=master)](https://travis-ci.org/gantsign/error-prone-checks)
 [![codecov](https://codecov.io/gh/gantsign/error-prone-checks/branch/master/graph/badge.svg)](https://codecov.io/gh/gantsign/error-prone-checks)
 [![Dependency Status](https://www.versioneye.com/user/projects/57e156d23adc05001270eb60/badge.svg?style=flat-round)](https://www.versioneye.com/user/projects/57e156d23adc05001270eb60)
-[![SonarQube Tech Debt](https://img.shields.io/sonar/https/sonarqube.com/com.github.gantsign.errorprone:error-prone-checks/tech_debt.svg)](https://sonarqube.com/overview?id=com.github.gantsign.errorprone%3Aerror-prone-checks)
+[![SonarQube Tech Debt](https://sonarqube.com/api/badges/measure?key=com.github.gantsign.errorprone:error-prone-checks&metric=sqale_debt_ratio)](https://sonarqube.com/dashboard?id=com.github.gantsign.errorprone%3Aerror-prone-checks)
 [![License](https://img.shields.io/badge/license-apache-blue.svg)](LICENSE)
 
 Additional checks for use with [Google Error Prone](http://errorprone.info).
