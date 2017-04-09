@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2016 GantSign Ltd. All Rights Reserved.
+  Copyright 2017 GantSign Ltd. All Rights Reserved.
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -24,10 +24,6 @@
 
   <name>Error Prone Checks</name>
   <description>Additional checks for Google Error Prone</description>
-
-  <prerequisites>
-    <maven>3.2.5</maven>
-  </prerequisites>
 
   <modules>
     <module>require-charset</module>
@@ -350,7 +346,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>[3.2.5,3.4)</version>
+                  <version>[3.2.5,3.6)</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>[1.8,1.9)</version>
